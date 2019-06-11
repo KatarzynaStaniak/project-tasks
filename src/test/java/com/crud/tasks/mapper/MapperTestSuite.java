@@ -18,6 +18,9 @@ public class MapperTestSuite {
     @Autowired
     private TrelloMapper trelloMapper;
 
+    @Autowired
+    private TaskMapper taskMapper;
+
     @Test
     public void testMapToCard() {
         //Given
@@ -120,5 +123,39 @@ public class MapperTestSuite {
         List<TrelloBoard> trelloBoardList = trelloMapper.mapToBoards(trelloBoardsDto);
         //Then
         Assert.assertEquals(false, trelloBoardList.get(0).getLists().get(0).isClosed());
+    }
+
+    @Test
+    public void testMapToTask() {
+        //Given
+        TaskDto taskDto = new TaskDto(1L, "Shopping", "Do shopping");
+        //When
+        Task task = taskMapper.mapToTask(taskDto);
+        //Then
+        Assert.assertEquals("Shopping", task.getTitle());
+    }
+
+    @Test
+    public void testMapToTaskDto() {
+        //Given
+        Task task = new Task(3L, "Shopping", "Do shopping");
+        //When
+        TaskDto taskDto = taskMapper.mapToTaskDto(task);
+        //Then
+        Assert.assertEquals(new Long(3), taskDto.getId());
+    }
+
+    @Test
+    public void testMapToTaskDtoList() {
+        //Given
+        List<Task> taskList = new ArrayList<>();
+        Task task = new Task(1L, "Shopping", "Do shopping");
+        Task task2 = new Task(2L, "Cinema", "Go to the cinema");
+        taskList.add(task);
+        taskList.add(task2);
+        //When
+        List<TaskDto> taskDtoList = taskMapper.mapToTaskDtoList(taskList);
+        //Then
+        Assert.assertEquals("Go to the cinema", taskDtoList.get(1).getContent());
     }
 }

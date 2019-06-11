@@ -1,4 +1,4 @@
-package com.crud.tasks.client;
+package com.crud.tasks.trello.client;
 
 import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
