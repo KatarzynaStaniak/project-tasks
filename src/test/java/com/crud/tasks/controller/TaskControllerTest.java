@@ -78,7 +78,7 @@ public class TaskControllerTest {
 
 
     @Test
-    public void testUpdateTaskTest() throws Exception {
+    public void testUpdateTask() throws Exception {
         //Given
         TaskDto taskDto = new TaskDto(11L, "Test title", "test content");
         TaskDto taskDtoUpdated = new TaskDto(11L, "Updated", "test content");
