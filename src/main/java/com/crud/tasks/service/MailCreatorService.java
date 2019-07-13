@@ -28,6 +28,8 @@ public class MailCreatorService {
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("application_name", companyDetails);
+        context.setVariable("goodbye", "Best Regards");
+        context.setVariable("preview_message", "New Trello Card!");
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 }
