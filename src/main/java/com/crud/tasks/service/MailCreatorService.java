@@ -51,15 +51,14 @@ public class MailCreatorService {
         List<String> functionality = new ArrayList<>();
         functionality.add("You can manage your tasks");
         functionality.add("Check number of tasks daily!");
-        functionality.add("Application allows sending tasks to Trello");
 
         Context context = new Context();
         context.setVariable("message", message);
         context.setVariable("tasks_url", "https://katarzynastaniak.github.io/");
-        context.setVariable("button", "Visit website");
+        context.setVariable("button", "Visit Task Application website");
         context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("application_name", companyDetails);
-        context.setVariable("goodbye", "Best Regards");
+        context.setVariable("goodbye", "Best Regards.");
         context.setVariable("preview_message", "Number of tasks in database.");
         context.setVariable("show_button", true);
         context.setVariable("is_friend", false);
