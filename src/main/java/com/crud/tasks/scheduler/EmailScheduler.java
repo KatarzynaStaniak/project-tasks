@@ -32,8 +32,8 @@ public class EmailScheduler {
         long size = taskRepository.count();
         String messageEnding = size == 1 ? "task" : "tasks";
 
-        simpleEmailService.send(new Mail(adminConfig.getAdminMail(),
+        simpleEmailService.sendScheduled(new Mail(adminConfig.getAdminMail(),
                 //SUBJECT, "Currently in database you got: " + size + " " + messageEnding, null)
-                SUBJECT, mailCreatorService.buildScheduledEmail("Currently in database you got: " + size + " " + messageEnding), null));
+                SUBJECT, "Currently in database you got: " + size + " " + messageEnding, null));
     }
 }
