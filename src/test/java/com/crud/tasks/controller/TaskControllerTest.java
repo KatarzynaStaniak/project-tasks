@@ -50,7 +50,7 @@ public class TaskControllerTest {
         when(taskMapper.mapToTaskDtoList(anyList())).thenReturn(taskDtoList);
 
         //When & Then
-        mockMvc.perform(get("/v1/task/getTasks").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/tasks").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))  // or isOk()
                 .andExpect(jsonPath("$[0].id", Matchers.is(1)))
                 .andExpect(jsonPath("$[0].title", Matchers.is("test")))
@@ -69,7 +69,7 @@ public class TaskControllerTest {
         when(service.getTask(3L)).thenReturn(Optional.of(task));
 
         //When & Then
-        mockMvc.perform(get("/v1/task/getTask").param("taskId", "3").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/tasks/3").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$.id", Matchers.is(3)))
                 .andExpect(jsonPath("$.title", Matchers.is("test task")))
@@ -89,7 +89,7 @@ public class TaskControllerTest {
         String jsonContent = gson.toJson(taskDto);
 
         //When & Then
-        mockMvc.perform(put("/v1/task/updateTask").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put("/v1/tasks").contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().isOk())
@@ -103,7 +103,7 @@ public class TaskControllerTest {
     public void testDeleteTask() throws Exception {
         //Given
         //When & Then
-        mockMvc.perform(delete("/v1/task/deleteTask/").param("taskId", "1")
+        mockMvc.perform(delete("/v1/tasks/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -121,7 +121,7 @@ public class TaskControllerTest {
         String jsonContent = gson.toJson(taskDto);
 
         //When & Then
-        mockMvc.perform(post("/v1/task/createTask")
+        mockMvc.perform(post("/v1/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
